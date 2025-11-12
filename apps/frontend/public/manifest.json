@@ -1,0 +1,28 @@
+{
+  "name": "CollegeAttend",
+  "short_name": "CollegeAttend",
+  "description": "Production-ready attendance PWA for SCIT with offline-first capture, college-controlled WhatsApp outreach, and optional twin-campus support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#146C94",
+  "theme_color": "#146C94",
+  "lang": "en-IN",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
+

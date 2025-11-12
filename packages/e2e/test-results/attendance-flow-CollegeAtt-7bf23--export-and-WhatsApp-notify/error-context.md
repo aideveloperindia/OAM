@@ -1,0 +1,87 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]: CollegeAttend
+        - paragraph [ref=e8]: Reliable attendance workflows for SCEE
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]: Campus
+          - combobox "Select campus" [ref=e12]:
+            - option "SCEE — School of Civil & Environmental Engineering" [selected]
+            - option "SCIT — School of Computing & Information Technology"
+        - button "Sign out" [ref=e13] [cursor=pointer]
+    - navigation [ref=e14]:
+      - link "Faculty Attendance" [ref=e15] [cursor=pointer]:
+        - /url: /app/faculty/attendance
+      - link "Student Dashboard" [ref=e16] [cursor=pointer]:
+        - /url: /app/student/dashboard
+      - link "Admin Reports" [ref=e17] [cursor=pointer]:
+        - /url: /app/admin/reports
+      - link "Sync Monitor" [ref=e18] [cursor=pointer]:
+        - /url: /app/sync-monitor
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - paragraph [ref=e22]: Admin Reporting
+        - heading "Attendance reports and exports" [level=1] [ref=e23]
+        - paragraph [ref=e24]: Generate CSV-ready reports with subject and batch filters. All times are captured in UTC and presented in Asia/Kolkata.
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - text: From
+          - textbox "From" [ref=e27]: 2025-11-05
+        - generic [ref=e28]:
+          - text: To
+          - textbox "To" [ref=e29]: 2025-11-11
+        - generic [ref=e30]:
+          - text: Subject ID
+          - textbox "Subject ID" [ref=e31]:
+            - /placeholder: Optional
+        - generic [ref=e32]:
+          - text: Batch ID
+          - textbox "Batch ID" [ref=e33]:
+            - /placeholder: Optional
+        - generic [ref=e34]:
+          - generic [ref=e35]: "Total records: 0 | Present 0 · Absent 0 · Late 0"
+          - generic [ref=e36]:
+            - button "Apply filters" [active] [ref=e37] [cursor=pointer]
+            - button "Reset" [ref=e38] [cursor=pointer]
+            - button "Export CSV" [disabled] [ref=e39]
+      - table [ref=e42]:
+        - rowgroup [ref=e43]:
+          - row "Date Subject Batch Present Absent Late Synced" [ref=e44]:
+            - cell "Date" [ref=e45]
+            - cell "Subject" [ref=e46]
+            - cell "Batch" [ref=e47]
+            - cell "Present" [ref=e48]
+            - cell "Absent" [ref=e49]
+            - cell "Late" [ref=e50]
+            - cell "Synced" [ref=e51]
+        - rowgroup [ref=e52]:
+          - row "No records found for the selected filters." [ref=e53]:
+            - cell "No records found for the selected filters." [ref=e54]
+      - generic [ref=e55]: CSV exports contain tenant ID, UTC timestamps, and record hashes for audit verification. Access is logged server-side for compliance.
+  - contentinfo [ref=e56]:
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - img "SCEE logo" [ref=e59]
+        - img "SCIT logo" [ref=e60]
+        - generic [ref=e61]: Serving SCEE & SCIT
+      - navigation [ref=e62]:
+        - link "About" [ref=e63] [cursor=pointer]:
+          - /url: /#about
+        - link "Features" [ref=e64] [cursor=pointer]:
+          - /url: /#features
+        - link "Privacy" [ref=e65] [cursor=pointer]:
+          - /url: /privacy
+        - link "Help" [ref=e66] [cursor=pointer]:
+          - /url: /help
+      - generic [ref=e67]:
+        - link "Quotation — Standard" [ref=e68] [cursor=pointer]:
+          - /url: /quote-standard
+        - link "Quotation — Advanced" [ref=e69] [cursor=pointer]:
+          - /url: /quote-advanced
+```

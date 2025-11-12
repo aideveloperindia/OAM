@@ -1,0 +1,495 @@
+openapi: 3.1.0
+info:
+  title: CollegeAttend API
+  version: 1.0.0
+  description: >
+    REST API powering the CollegeAttend progressive web application for SCEE and SCIT.
+    All timestamps are UTC ISO-8601 strings unless otherwise stated.
+servers:
+  - url: https://staging.collegeattend.in/api/v1
+    description: Staging
+  - url: http://localhost:4000/api/v1
+    description: Local development
+tags:
+  - name: Auth
+  - name: Faculty
+  - name: Attendance
+  - name: Student
+  - name: Admin
+  - name: Operations
+paths:
+  /healthz:
+    get:
+      tags: [Operations]
+      summary: Service health indicator
+      responses:
+        '200':
+          description: Service is available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  timestamp:
+                    type: string
+                    format: date-time
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Email/password login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginRequest'
+      responses:
+        '200':
+          description: Authenticated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokensResponse'
+        '401':
+          description: Invalid credentials
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Rotate JWT access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRefreshRequest'
+      responses:
+        '200':
+          description: Tokens refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokensResponse'
+        '401':
+          description: Refresh token invalid or expired
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Revoke refresh token
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLogoutRequest'
+      responses:
+        '204':
+          description: Logout accepted
+  /faculty/session/active:
+    get:
+      tags: [Faculty]
+      summary: Retrieve the active attendance session for a faculty member
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: tenantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Active session payload or null if none
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/AttendanceSession'
+                  - type: 'null'
+        '401':
+          description: Authentication required
+  /attendance/bulk:
+    post:
+      tags: [Attendance]
+      summary: Sync locally captured attendance records
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttendanceBulkRequest'
+      responses:
+        '200':
+          description: Sync results for each local record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendanceBulkResponse'
+        '401':
+          description: Authentication required
+  /student/dashboard:
+    get:
+      tags: [Student]
+      summary: Student dashboard snapshot
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: tenantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student dashboard response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDashboard'
+        '401':
+          description: Authentication required
+        '404':
+          description: Student profile not found
+  /admin/reports/attendance:
+    get:
+      tags: [Admin]
+      summary: Aggregated attendance report for administrators
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: from
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: to
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: subjectId
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: batchId
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Aggregated attendance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAttendanceReport'
+        '401':
+          description: Authentication required
+  /admin/reports/attendance/export:
+    get:
+      tags: [Admin]
+      summary: Download CSV export for attendance report
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: from
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: to
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: subjectId
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: batchId
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: CSV containing attendance rows
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: No rows available for export
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AuthLoginRequest:
+      type: object
+      required: [email, password, tenantId]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 6
+        tenantId:
+          type: string
+          description: 'scee | scit'
+    AuthRefreshRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+    AuthLogoutRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+    AuthUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum: [faculty, student, admin]
+        tenantId:
+          type: string
+    AuthTokensResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/AuthUser'
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: integer
+          example: 900
+    AttendanceStudent:
+      type: object
+      properties:
+        id:
+          type: string
+        rollNumber:
+          type: string
+        name:
+          type: string
+        parentPhone:
+          type: string
+        parentName:
+          type: string
+          nullable: true
+        riskLevel:
+          type: string
+          enum: [low, medium, high]
+    AttendanceSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        subjectId:
+          type: string
+        subjectName:
+          type: string
+        batchId:
+          type: string
+        batchName:
+          type: string
+        scheduledAt:
+          type: string
+          format: date-time
+        facultyId:
+          type: string
+        facultyName:
+          type: string
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceStudent'
+    AttendanceBulkRecord:
+      type: object
+      required:
+        - localId
+        - scheduleEntryId
+        - studentId
+        - capturedAt
+        - status
+      properties:
+        localId:
+          type: string
+        scheduleEntryId:
+          type: string
+        studentId:
+          type: string
+        capturedAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [present, absent, late]
+        payload:
+          type: object
+          additionalProperties: true
+    AttendanceBulkResult:
+      type: object
+      properties:
+        localId:
+          type: string
+        status:
+          type: string
+          enum: [synced, failed]
+        attendanceId:
+          type: string
+          nullable: true
+        conflict:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+    AttendanceBulkRequest:
+      type: object
+      required: [records]
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceBulkRecord'
+    AttendanceBulkResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceBulkResult'
+    StudentDashboardSummary:
+      type: object
+      properties:
+        subjectId:
+          type: string
+        subjectName:
+          type: string
+        attended:
+          type: integer
+        total:
+          type: integer
+        lastUpdated:
+          type: string
+          format: date-time
+    StudentDashboardSession:
+      type: object
+      properties:
+        id:
+          type: string
+        subjectName:
+          type: string
+        facultyName:
+          type: string
+        scheduledAt:
+          type: string
+          format: date-time
+        location:
+          type: string
+          nullable: true
+    StudentSyncStatus:
+      type: object
+      properties:
+        lastSyncedAt:
+          type: string
+          format: date-time
+          nullable: true
+        pendingCount:
+          type: integer
+    StudentDashboard:
+      type: object
+      properties:
+        studentName:
+          type: string
+        rollNumber:
+          type: string
+        overallPercentage:
+          type: number
+        summaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudentDashboardSummary'
+        upcomingSessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudentDashboardSession'
+        syncStatus:
+          $ref: '#/components/schemas/StudentSyncStatus'
+    AttendanceAggregateRow:
+      type: object
+      properties:
+        subjectId:
+          type: string
+        subjectName:
+          type: string
+        batchId:
+          type: string
+        batchName:
+          type: string
+        date:
+          type: string
+          format: date-time
+        present:
+          type: integer
+        absent:
+          type: integer
+        late:
+          type: integer
+        syncedAt:
+          type: string
+          format: date-time
+          nullable: true
+    AdminAttendanceReport:
+      type: object
+      properties:
+        aggregates:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceAggregateRow'
+        exports:
+          type: object
+          properties:
+            csvAvailable:
+              type: boolean
+
+
+
+
+

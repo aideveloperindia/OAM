@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: collegeattend-postgres
+    environment:
+      POSTGRES_USER: collegeattend
+      POSTGRES_PASSWORD: collegeattend
+      POSTGRES_DB: collegeattend
+    ports:
+      - '5544:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: collegeattend-backend
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgres://collegeattend:collegeattend@postgres:5432/collegeattend
+      JWT_SECRET: change-me-in-production-collegeattend
+      REFRESH_TOKEN_SECRET: change-me-refresh-secret-collegeattend
+      TOKEN_EXPIRY_SECONDS: '900'
+      REFRESH_TOKEN_EXPIRY_SECONDS: '604800'
+    ports:
+      - '4100:4000'
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL: http://backend:4000/api/v1
+    container_name: collegeattend-frontend
+    depends_on:
+      - backend
+    ports:
+      - '4173:80'
+
+volumes:
+  postgres_data:
+
+
+
+
+

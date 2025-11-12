@@ -1,0 +1,204 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  FACULTY
+  STUDENT
+  ADMIN
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+}
+
+enum AttendanceSource {
+  OFFLINE
+  MANUAL
+  IMPORT
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  WITHDRAWN
+}
+
+enum AuditAction {
+  CREATED
+  UPDATED
+  CONFLICT
+}
+
+model Tenant {
+  id             String           @id
+  name           String
+  shortName      String
+  timezone       String           @default("Asia/Kolkata")
+  contactEmail   String?
+  contactPhone   String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  users          User[]
+  subjects       Subject[]
+  batches        Batch[]
+  schedule       ScheduleEntry[]
+  enrollments    Enrollment[]
+  attendance     Attendance[]
+  attendanceLogs AttendanceAudit[]
+}
+
+model User {
+  id             String           @id @default(cuid())
+  tenantId       String
+  tenant         Tenant           @relation(fields: [tenantId], references: [id])
+  email          String           @unique
+  passwordHash   String
+  role           UserRole
+  name           String
+  phone          String?
+  rollNumber     String?          @unique
+  parentName     String?
+  parentPhone    String?
+  whatsappConsent Boolean         @default(true)
+  status         EnrollmentStatus @default(ACTIVE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  refreshTokens  RefreshToken[]
+  facultyEntries ScheduleEntry[]  @relation("FacultySchedule")
+  attendanceAsStudent Attendance[] @relation("StudentAttendance")
+  attendanceMarked Attendance[]   @relation("FacultyAttendance")
+  audits         AttendanceAudit[] @relation("AuditActor")
+  enrollments    Enrollment[]     @relation("StudentEnrollment")
+
+  @@index([tenantId, role])
+}
+
+model RefreshToken {
+  id         String   @id @default(cuid())
+  token      String   @unique
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  revokedAt  DateTime?
+
+  @@index([userId, expiresAt])
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  code      String
+  name      String
+  credits   Int      @default(4)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  schedule  ScheduleEntry[]
+  enrollments Enrollment[]
+
+  @@unique([tenantId, code])
+}
+
+model Batch {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  code      String
+  name      String
+  year      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  schedule  ScheduleEntry[]
+  enrollments Enrollment[]
+
+  @@unique([tenantId, code])
+}
+
+model ScheduleEntry {
+  id          String       @id @default(cuid())
+  tenantId    String
+  tenant      Tenant       @relation(fields: [tenantId], references: [id])
+  subjectId   String
+  subject     Subject      @relation(fields: [subjectId], references: [id])
+  batchId     String
+  batch       Batch        @relation(fields: [batchId], references: [id])
+  facultyId   String
+  faculty     User         @relation("FacultySchedule", fields: [facultyId], references: [id])
+  startsAt    DateTime
+  endsAt      DateTime
+  location    String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  attendance  Attendance[]
+
+  @@index([tenantId, startsAt])
+}
+
+model Enrollment {
+  id         String           @id @default(cuid())
+  tenantId   String
+  tenant     Tenant           @relation(fields: [tenantId], references: [id])
+  studentId  String
+  student    User             @relation("StudentEnrollment", fields: [studentId], references: [id])
+  batchId    String
+  batch      Batch            @relation(fields: [batchId], references: [id])
+  subjectId  String
+  subject    Subject          @relation(fields: [subjectId], references: [id])
+  status     EnrollmentStatus @default(ACTIVE)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([studentId, subjectId])
+  @@index([tenantId, batchId])
+}
+
+model Attendance {
+  id              String            @id @default(cuid())
+  tenantId        String
+  tenant          Tenant            @relation(fields: [tenantId], references: [id])
+  scheduleEntryId String
+  scheduleEntry   ScheduleEntry     @relation(fields: [scheduleEntryId], references: [id])
+  studentId       String
+  student         User              @relation("StudentAttendance", fields: [studentId], references: [id])
+  facultyId       String
+  faculty         User              @relation("FacultyAttendance", fields: [facultyId], references: [id])
+  status          AttendanceStatus
+  capturedAt      DateTime
+  capturedAtLocal DateTime?
+  source          AttendanceSource  @default(OFFLINE)
+  localId         String?
+  metadata        Json?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  audits          AttendanceAudit[]
+
+  @@unique([scheduleEntryId, studentId])
+  @@index([tenantId, scheduleEntryId])
+  @@index([tenantId, studentId])
+}
+
+model AttendanceAudit {
+  id           String       @id @default(cuid())
+  tenantId     String
+  tenant       Tenant       @relation(fields: [tenantId], references: [id])
+  attendanceId String?
+  attendance   Attendance?  @relation(fields: [attendanceId], references: [id])
+  actorId      String?
+  actor        User?        @relation("AuditActor", fields: [actorId], references: [id])
+  action       AuditAction
+  payload      Json
+  createdAt    DateTime     @default(now())
+
+  @@index([tenantId, action])
+  @@index([attendanceId])
+}
+
+

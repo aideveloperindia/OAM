@@ -1,0 +1,19 @@
+{
+  "name": "artifacts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:quotes": "node src/generate-quotes.mjs",
+    "generate:walkthrough": "python scripts/generate_walkthrough.py"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.19",
+    "pdfkit": "^0.15.0"
+  }
+}
+
+
+
+
+

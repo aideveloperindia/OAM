@@ -1,0 +1,19 @@
+{
+  "name": "collegeattend",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "node -e \"try{require('husky').install()}catch(e){process.exit(0)}\"",
+    "dev:frontend": "yarn workspace frontend dev",
+    "start:backend": "yarn workspace backend dev",
+    "test": "yarn workspace backend test && yarn workspace frontend test"
+  },
+  "packageManager": "yarn@1.22.22",
+  "main": "index.js",
+  "license": "MIT"
+}

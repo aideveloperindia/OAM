@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="SCEE logo">
+  <rect width="128" height="128" rx="18" fill="#146C94"/>
+  <path d="M32 92h64v8H32z" fill="#F8FAFC"/>
+  <path d="M64 24c-17.7 0-32 14.3-32 32 0 12.5 8.1 24.2 19.8 29.1L64 104l12.2-18.9C87.9 80.2 96 68.5 96 56c0-17.7-14.3-32-32-32zm0 52c-11 0-20-9-20-20s9-20 20-20 20 9 20 20-9 20-20 20z" fill="#F8FAFC"/>
+</svg>
+
