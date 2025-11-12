@@ -20,6 +20,7 @@ const statusOptions: AttendanceStatus[] = ['present', 'absent', 'late']
 
 export const ClassAttendancePage = () => {
   const { tenantId, tenant } = useTenant()
+  const senderNumber = tenant?.whatsappSenderNumber ?? ''
   const { user } = useAuth()
   const { data: session, isLoading } = useActiveAttendanceSession(tenantId)
   const queueSummary = useQueueSummary(tenantId)
@@ -71,7 +72,12 @@ export const ClassAttendancePage = () => {
 
 
   useEffect(() => {
-    if (!session) return
+    if (!session) {
+      setMarks({})
+      setSelectedAbsentStudents(new Set())
+      setSelectedRiskStudents(new Set())
+      return
+    }
     const initialMarks: Record<string, AttendanceStatus> = {}
     const initialAbsent = new Set<string>()
     const initialRisk = new Set<string>()
@@ -218,15 +224,14 @@ export const ClassAttendancePage = () => {
         const student = session.students.find((s) => s.id === studentId)
         if (!student) return null
         return buildAbsenceNotification({
-          student,
-          subject: session.subjectName,
-          date: session.scheduledAt,
-          senderNumber: tenant.whatsappSenderNumber,
-          recipientOverride: whatsAppRecipient
+          session,
+          studentName: student.name,
+          rollNumber: student.rollNumber,
+          parentPhone: whatsAppRecipient.trim() || student.parentPhone
         })
       })
       .filter((n): n is PreparedNotification => n !== null)
-  }, [selectedAbsentStudents, session, tenant.whatsappSenderNumber, whatsAppRecipient])
+  }, [selectedAbsentStudents, session, whatsAppRecipient])
 
   const riskNotifications: PreparedNotification[] = useMemo(() => {
     if (!session) return []
@@ -235,14 +240,13 @@ export const ClassAttendancePage = () => {
         const student = session.students.find((s) => s.id === studentId)
         if (!student || student.riskLevel !== 'high') return null
         return buildRiskNotification({
-          student,
-          subject: session.subjectName,
-          senderNumber: tenant.whatsappSenderNumber,
-          recipientOverride: whatsAppRecipient
+          session,
+          studentName: student.name,
+          parentPhone: whatsAppRecipient.trim() || student.parentPhone
         })
       })
       .filter((n): n is PreparedNotification => n !== null)
-  }, [selectedRiskStudents, session, tenant.whatsappSenderNumber, whatsAppRecipient])
+  }, [selectedRiskStudents, session, whatsAppRecipient])
 
   const allNotifications = [...absenceNotifications, ...riskNotifications]
 
@@ -381,9 +385,9 @@ export const ClassAttendancePage = () => {
       <NotifyParentsModal
         open={isNotifyOpen}
         onClose={() => setNotifyOpen(false)}
-        notifications={allNotifications}
-        whatsAppRecipient={whatsAppRecipient}
-        onRecipientChange={setWhatsAppRecipient}
+        notifications={senderNumber ? allNotifications : []}
+        senderNumber={senderNumber || 'Sender number not configured'}
+        recipientOverride={whatsAppRecipient}
       />
     </div>
   )

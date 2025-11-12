@@ -14,8 +14,12 @@ export const QuoteStandardPage = () => (
       { label: 'Total Project Price (all-inclusive)', value: '₹4,80,000' }
     ]}
     timeline="Timeline: 6 weeks (includes infra hardening & backup drills)"
-    monthlyHeading=""
-    monthlyItems={[]}
+    monthlyHeading="Ongoing coverage (monthly, max expected)"
+    monthlyItems={[
+      'Maintenance & support (remote team, up to 40 hours): ₹1,65,000/month',
+      'Managed hosting, monitoring & multi-region backups: ₹40,000/month',
+      'SMS gateway renewals & 25,000 message fallback credits: ₹18,000/month'
+    ]}
     inclusions={inclusions}
   />
 )

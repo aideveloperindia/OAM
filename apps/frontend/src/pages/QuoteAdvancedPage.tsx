@@ -17,8 +17,13 @@ export const QuoteAdvancedPage = () => (
     ]}
     inclusions={inclusions}
     timeline="Timeline: Additional 5–7 weeks (total 11–13 weeks)"
-    monthlyHeading=""
-    monthlyItems={[]}
+    monthlyHeading="Monthly infra & maintenance (max expected)"
+    monthlyItems={[
+      'Managed hosting (CPU-based), storage & monitoring: ₹40,000/month',
+      'Maintenance & support (app + ML ops, up to 60 hours): ₹2,20,000/month',
+      'Model retraining & evaluation cadence (CPU optimised): ₹60,000/month',
+      'SMS gateway renewals & 35,000 message fallback credits: ₹22,000/month'
+    ]}
   />
 )
 
