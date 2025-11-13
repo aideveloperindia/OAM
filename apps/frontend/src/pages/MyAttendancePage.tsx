@@ -60,11 +60,11 @@ export const MyAttendancePage = () => {
       <div className="absolute inset-0 bg-slate-900/45" />
       <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-10 text-white">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-primary-dark">
+        <p className="text-xs uppercase tracking-wide text-white">
           My Attendance
         </p>
-        <h1 className="text-xl font-semibold text-slate-900">
-          {user?.name ?? 'Faculty Member'}
+        <h1 className="text-xl font-semibold text-white">
+          Peddi Kishore
         </h1>
         <p className="text-sm text-slate-100">
           Biometric punch records and manual confirmations. After scanning your fingerprint at the kiosk, confirm your check-in or check-out here.
