@@ -1,0 +1,14 @@
+﻿Monthly Recurring Cost Breakdown (Simple Attendance App)
+
+- Vercel Pro plan (frontend + API routes) .............. â‚¹4,500
+- MongoDB Atlas M10 cluster ............................. â‚¹7,500
+- Realtime service (Pusher/Ably production tier) ......... â‚¹3,000
+- Monitoring & logging (Sentry + uptime) ............... â‚¹1,000
+- Domain + transactional email allowance ............... â‚¹1,000
+---------------------------------------------------------------
+Estimated Monthly Total ................................ â‚¹17,000
+
+Notes:
+- Remove the realtime line (-â‚¹3,000) if you do not need live presence updates; monthly total becomes â‚¹14,000.
+- SSL certificates are included with Vercel; no extra cost.
+- Messaging (WhatsApp/SMS) is usage-based and should be budgeted separately if required.

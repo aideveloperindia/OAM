@@ -9,16 +9,16 @@ export const PublicLayout = () => {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <Link to="/" className="flex items-center gap-3">
             <img
-              src="/assets/college-logo.png"
-              alt="Sree Chaitanya Institute of Technological Sciences crest"
-              className="h-10 w-10 rounded"
+              src="/assets/oam-official-logo.png"
+              alt="Sree Chaitanya Group attendance platform logo"
+              className="h-12 w-12 rounded"
             />
             <div>
               <p className="text-sm font-semibold text-primary-dark uppercase tracking-wide">
-                OAM
+                Sree Chaitanya Group
               </p>
               <p className="text-xs text-slate-500">
-                Smart attendance for Sree Chaitanya Institute of Technological Sciences
+                Smart attendance for SCIT & SCEE faculty workflows
               </p>
             </div>
           </Link>

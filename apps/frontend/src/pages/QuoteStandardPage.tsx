@@ -7,22 +7,57 @@ const inclusions = [
   'Audit logs, RBAC, infrastructure-as-code deployment, documentation, and onsite onboarding.'
 ]
 
+const pricingOptions = [
+  {
+    title: 'Option A — Fully Managed (developer absorbs 12 months of infra)',
+    headline:
+      'Contract includes development plus 12 months of cloud, messaging, domains, SSL, email, monitoring, and AMC handled by us.',
+    bullets: [
+      'One-time development and implementation fee: ₹4,80,000',
+      'Recurring cloud & maintenance (₹17,000/month) included for first year: ₹2,04,000',
+      'Total contract amount billed now: ₹6,84,000 (covers everything for year one)',
+      'From year two onward, recurring services renew at ₹17,000/month or the service pauses.'
+    ]
+  },
+  {
+    title: 'Option B — Client pays monthly cloud/AMC directly',
+    headline:
+      'We deliver and hand over the platform; client keeps cloud, messaging, SSL, and monitoring subscriptions active in their own accounts.',
+    bullets: [
+      'One-time development and implementation fee: ₹4,80,000',
+      'Client pays recurring cloud & maintenance directly: ₹17,000/month (Vercel Pro, MongoDB Atlas M10, Pusher/Ably realtime, monitoring, domain/email)',
+      'If monthly services lapse, the platform is suspended until payments resume.'
+    ]
+  }
+]
+
 export const QuoteStandardPage = () => (
   <PrintableQuoteLayout
     title="Quotation — Standard PWA Attendance App (4,000 students)"
     priceLines={[
-      { label: 'Total Project Price (all-inclusive)', value: '₹4,80,000' }
+      { label: 'One-time development & implementation fee', value: '₹4,80,000' },
+      { label: 'Recommended delivery timeline', value: '6 weeks (includes infra hardening & backup drills)' }
     ]}
+    pricingOptions={pricingOptions}
     timeline="Timeline: 6 weeks (includes infra hardening & backup drills)"
-    monthlyHeading="Ongoing coverage (monthly, max expected)"
+    monthlyHeading="Baseline monthly stack (payable after year one or by client under Option B)"
     monthlyItems={[
-      'Managed hosting (app, DB, CDN, monitoring stack): ₹38,000/month',
-      'SMS & WhatsApp credits (25,000 message pack + DLT renewals): ₹21,500/month',
-      'Automated backups & cold storage snapshots: ₹9,500/month'
+      'Vercel Pro hosting (Next.js frontend + API routes): ₹4,500/month',
+      'MongoDB Atlas M10 cluster (10 GB storage, backups): ₹7,500/month',
+      'Realtime messaging (Pusher/Ably production tier): ₹3,000/month',
+      'Monitoring & logging (Sentry + uptime): ₹1,000/month',
+      'Domain & transactional email allowance: ₹1,000/month',
+      'Estimated total recurring cost: ₹17,000/month'
     ]}
     inclusions={inclusions}
   />
 )
+
+interface PricingOption {
+  title: string
+  headline: string
+  bullets: string[]
+}
 
 interface PrintableQuoteLayoutProps {
   title: string
@@ -31,6 +66,7 @@ interface PrintableQuoteLayoutProps {
   timeline: string
   monthlyHeading: string
   monthlyItems: string[]
+  pricingOptions?: PricingOption[]
 }
 
 export const PrintableQuoteLayout = ({
@@ -39,7 +75,8 @@ export const PrintableQuoteLayout = ({
   inclusions,
   timeline,
   monthlyHeading,
-  monthlyItems
+  monthlyItems,
+  pricingOptions
 }: PrintableQuoteLayoutProps) => {
   const onPrint = () => window.print()
 
@@ -62,6 +99,27 @@ export const PrintableQuoteLayout = ({
               <PriceLine key={line.label} label={line.label} value={line.value} />
             ))}
           </div>
+          {pricingOptions?.length ? (
+            <div className="space-y-4">
+              <h2 className="text-base font-semibold text-slate-900">Pricing structure</h2>
+              <div className="grid gap-4">
+                {pricingOptions.map((option) => (
+                  <article
+                    key={option.title}
+                    className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm"
+                  >
+                    <h3 className="text-lg font-semibold text-slate-900">{option.title}</h3>
+                    <p className="mt-2 text-sm text-slate-600">{option.headline}</p>
+                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600">
+                      {option.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : null}
           <div>
             <h2 className="text-base font-semibold text-slate-900">Includes:</h2>
             <ul className="mt-2 list-disc space-y-1 pl-5">
