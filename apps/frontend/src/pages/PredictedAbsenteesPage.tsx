@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { useTenant } from '../hooks/useTenant'
 import { formatDisplayDate } from '../lib/date'
 
 interface PredictedAbsentee {
@@ -70,7 +69,6 @@ const dummyPredictions: PredictedAbsentee[] = [
 ]
 
 export const PredictedAbsenteesPage = () => {
-  const { tenant } = useTenant()
   const [selectedClass, setSelectedClass] = useState<string>('all')
 
   const classes = useMemo(() => {
@@ -209,5 +207,7 @@ export const PredictedAbsenteesPage = () => {
     </div>
   )
 }
+
+
 
 

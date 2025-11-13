@@ -12,7 +12,7 @@ const navItems = [
 ]
 
 export const AppLayout = () => {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
   const { tenant } = useTenant()
 
   return (
@@ -26,7 +26,7 @@ export const AppLayout = () => {
             <p className="text-xs text-slate-500">
               Online Attendance Management for SCIT
             </p>
-            {tenant.demoRoster.length ? (
+            {tenant?.demoRoster?.length ? (
               <p className="mt-1 text-[11px] font-medium uppercase tracking-wide text-primary">
                 Demo dataset active
               </p>

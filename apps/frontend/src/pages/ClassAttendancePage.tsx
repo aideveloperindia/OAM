@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   useActiveAttendanceSession,
-  useQueueSummary,
   useQueuedAttendance,
   saveAttendanceLocally,
   requestBackgroundSync
@@ -23,7 +22,6 @@ export const ClassAttendancePage = () => {
   const senderNumber = tenant?.whatsappSenderNumber ?? ''
   const { user } = useAuth()
   const { data: session, isLoading } = useActiveAttendanceSession(tenantId)
-  const queueSummary = useQueueSummary(tenantId)
   const queue = useQueuedAttendance(tenantId)
   const [marks, setMarks] = useState<Record<string, AttendanceStatus>>({})
   const [selectedAbsentStudents, setSelectedAbsentStudents] = useState<Set<string>>(
@@ -141,17 +139,18 @@ export const ClassAttendancePage = () => {
 
   const handleSaveSession = async () => {
     if (!session || !user) return
-    const entries = session.students.map((student) => ({
-      studentId: student.id,
-      status: statusByStudent.get(student.id) ?? 'present',
-      scheduleEntryId: session.sessionId,
-      capturedAt: new Date().toISOString()
-    }))
-    await saveAttendanceLocally({
-      tenantId,
-      facultyId: user.id,
-      entries
-    })
+    await Promise.all(
+      session.students.map((student) =>
+        saveAttendanceLocally({
+          tenantId,
+          sessionId: session.sessionId,
+          subjectId: session.subjectId,
+          facultyId: user.id,
+          studentId: student.id,
+          status: statusByStudent.get(student.id) ?? 'present'
+        })
+      )
+    )
     await requestBackgroundSync()
     alert('Session saved locally. Will sync when online.')
   }

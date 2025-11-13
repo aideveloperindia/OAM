@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useTenant } from '../hooks/useTenant'
 import { useAuth } from '../hooks/useAuth'
 import { formatDisplayDate } from '../lib/date'
 
@@ -12,7 +11,6 @@ interface AttendanceRecord {
 }
 
 export const MyAttendancePage = () => {
-  const { tenant } = useTenant()
   const { user } = useAuth()
   const [records] = useState<AttendanceRecord[]>([
     {
@@ -157,5 +155,7 @@ export const MyAttendancePage = () => {
     </div>
   )
 }
+
+
 
 

@@ -11,6 +11,7 @@
     "postinstall": "node -e \"try{require('husky').install()}catch(e){process.exit(0)}\"",
     "dev:frontend": "yarn workspace frontend dev",
     "start:backend": "yarn workspace backend dev",
+    "build": "yarn workspace frontend build",
     "test": "yarn workspace backend test && yarn workspace frontend test"
   },
   "packageManager": "yarn@1.22.22",

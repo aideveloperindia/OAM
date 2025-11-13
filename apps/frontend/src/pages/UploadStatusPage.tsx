@@ -92,7 +92,7 @@ export const UploadStatusPage = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {groupedByStatus.pending.map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-50">
+                    <tr key={item.localId} className="hover:bg-slate-50">
                       <td className="px-4 py-3 font-mono text-xs text-slate-600">
                         {item.studentId}
                       </td>
@@ -128,7 +128,7 @@ export const UploadStatusPage = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {groupedByStatus.failed.map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-50">
+                    <tr key={item.localId} className="hover:bg-slate-50">
                       <td className="px-4 py-3 font-mono text-xs text-slate-600">
                         {item.studentId}
                       </td>
@@ -137,7 +137,7 @@ export const UploadStatusPage = () => {
                         {formatDisplayDate(item.capturedAt)}
                       </td>
                       <td className="px-4 py-3 text-xs text-danger">
-                        {item.errorMessage ?? 'Unknown error'}
+                        Retry required – check connection and try again
                       </td>
                     </tr>
                   ))}
@@ -166,7 +166,7 @@ export const UploadStatusPage = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {groupedByStatus.synced.map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-50">
+                    <tr key={item.localId} className="hover:bg-slate-50">
                       <td className="px-4 py-3 font-mono text-xs text-slate-600">
                         {item.studentId}
                       </td>
