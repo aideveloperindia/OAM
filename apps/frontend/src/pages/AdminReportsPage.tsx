@@ -4,6 +4,7 @@ import type { FormEvent } from 'react'
 import { apiClient } from '../services/api-client'
 import { useTenant } from '../hooks/useTenant'
 import { formatDisplayDate } from '../lib/date'
+import detainProbabilityImage from '../assets/detain-probability.png'
 
 interface ReportFilter {
   from: string
@@ -157,6 +158,14 @@ export const AdminReportsPage = () => {
           captured in UTC and presented in Asia/Kolkata.
         </p>
       </header>
+
+      <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <img
+          src={detainProbabilityImage}
+          alt="Detention probability analytics"
+          className="h-52 w-full object-cover sm:h-64"
+        />
+      </div>
 
       <form
         onSubmit={handleFilterChange}

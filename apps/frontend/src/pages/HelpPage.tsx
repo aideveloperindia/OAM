@@ -1,3 +1,5 @@
+import hodImage from '../assets/hod.png'
+
 export const HelpPage = () => (
   <div className="bg-white">
     <div className="mx-auto w-full max-w-5xl space-y-10 px-4 py-12 text-sm text-slate-700">
@@ -9,6 +11,25 @@ export const HelpPage = () => (
           lecturers or administrators.
         </p>
       </header>
+      <div className="grid gap-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm sm:grid-cols-[2fr_1fr]">
+        <div className="space-y-3">
+          <p className="text-sm text-slate-600">
+            Heads of Department track sync status, detain probabilities, and escalation notes in the control room.
+            Share this guide with new faculty so every workflow—from offline capture to guardian notifications—
+            runs the way the administration expects.
+          </p>
+          <p className="text-xs uppercase tracking-wide text-primary-dark">
+            Quick reference · Downloadable from the login page splash
+          </p>
+        </div>
+        <div className="flex items-center justify-center">
+          <img
+            src={hodImage}
+            alt="HOD monitoring dashboards"
+            className="h-28 w-28 rounded-2xl object-cover shadow-md shadow-primary/25"
+          />
+        </div>
+      </div>
       <InstructionSection
         number={1}
         title="Daily lecturer attendance workflow"

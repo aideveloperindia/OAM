@@ -16,9 +16,6 @@ export const GlobalFooter = () => {
           </span>
         </div>
         <nav className="flex items-center gap-4 text-slate-500">
-          <Link className="hover:text-primary transition-colors" to="/#about">
-            About
-          </Link>
           <Link
             className="hover:text-primary transition-colors"
             to="/#features"

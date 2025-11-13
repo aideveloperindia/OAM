@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { apiClient } from '../services/api-client'
 import { useTenant } from '../hooks/useTenant'
 import { formatDisplayDate } from '../lib/date'
+import performanceImage from '../assets/performance.png'
 
 interface AttendanceSummary {
   subjectId: string
@@ -114,6 +115,14 @@ export const StudentDashboardPage = () => {
           .
         </p>
       </header>
+
+      <div className="overflow-hidden rounded-3xl border border-primary/20 bg-white shadow-sm shadow-primary/15">
+        <img
+          src={performanceImage}
+          alt="Student performance analytics dashboard"
+          className="h-52 w-full object-cover sm:h-60"
+        />
+      </div>
 
       <section className="grid gap-4 sm:grid-cols-2">
         {data.summaries.map((summary) => (

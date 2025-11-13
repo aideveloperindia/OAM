@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useTenant } from '../hooks/useTenant'
 import type { FormEvent } from 'react'
+import syncBackground from '../assets/sync.png'
 
 export const LoginPage = () => {
   const { tenantId } = useTenant()
@@ -30,8 +31,16 @@ export const LoginPage = () => {
 
   if (loading) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <p className="text-slate-600">Preparing secure access…</p>
+      <div className="relative flex min-h-[calc(100vh-6rem)] items-center justify-center overflow-hidden">
+        <img
+          src={syncBackground}
+          alt="Attendance sync in progress"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-900/40" />
+        <p className="relative z-10 text-base font-semibold text-white">
+          Preparing secure access…
+        </p>
       </div>
     )
   }
@@ -41,7 +50,14 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
+    <div className="relative flex min-h-[calc(100vh-6rem)] items-center justify-center overflow-hidden px-4 py-12">
+      <img
+        src={syncBackground}
+        alt="Attendance sync illustration"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-slate-900/40" />
+      <div className="relative z-10 mx-auto flex w-full max-w-md flex-col gap-6 rounded-3xl border border-white/20 bg-white/95 p-8 shadow-2xl shadow-primary/20">
       <header className="space-y-1 text-center">
         <h1 className="text-xl font-semibold text-slate-900">
           Sign in to OAM
@@ -82,6 +98,7 @@ export const LoginPage = () => {
         For access requests, contact the campus administrator listed in the
         quotation.
       </p>
+    </div>
     </div>
   )
 }

@@ -2,8 +2,6 @@ import { Link, Outlet } from 'react-router-dom'
 import { GlobalFooter } from './GlobalFooter'
 import { TenantSelector } from '../ui/TenantSelector'
 
-const PRIMARY_LOGO = '/assets/college-logo.png'
-
 export const PublicLayout = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background text-slate-900">
@@ -11,7 +9,7 @@ export const PublicLayout = () => {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <Link to="/" className="flex items-center gap-3">
             <img
-              src={PRIMARY_LOGO}
+              src="/assets/college-logo.png"
               alt="Sree Chaitanya Institute of Technological Sciences crest"
               className="h-10 w-10 rounded"
             />

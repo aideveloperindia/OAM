@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { TENANT_LIST } from '../data/tenants'
+import heroImage from '../assets/student-attendance.png'
+import principalImage from '../assets/principal.png'
 
 export const LandingPage = () => {
   return (
     <div className="bg-background">
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-sky-50">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8 px-4 py-16 sm:py-20">
+        <div className="mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-12 px-4 py-16 lg:flex-row lg:items-start lg:gap-16 lg:py-20">
           <div className="max-w-2xl space-y-6">
             <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
               Smart attendance for 4,000 students — offline-ready, parent-connected, audit-proof
@@ -23,28 +25,35 @@ export const LandingPage = () => {
                 Get Access
               </Link>
             </div>
+            <div className="grid gap-4 rounded-3xl border border-primary/20 bg-white/90 p-6 shadow-xl shadow-primary/10 backdrop-blur">
+              <div>
+                <h2 className="text-lg font-semibold text-slate-900">
+                  Offline-first attendance workflows
+                </h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  Capture attendance without worrying about connectivity disruptions. OAM syncs automatically
+                  when the device is back online, powered by IndexedDB (Dexie.js) and background sync cues.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-slate-900">
+                  Parent notifications without delay
+                </h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  Teachers confirm and send pre-filled WhatsApp or SMS alerts to parents. No WhatsApp
+                  Business API is required and SMS routes through the college’s DLT-approved gateway with
+                  delivery tracking.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="grid w-full gap-6 rounded-3xl bg-white p-6 shadow-xl shadow-primary/10 sm:grid-cols-2">
-            <div>
-              <h2 className="text-lg font-semibold text-slate-900">
-                Offline-first attendance workflows
-              </h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Capture attendance without worrying about connectivity disruptions.
-                OAM syncs automatically when the device is back online,
-                powered by IndexedDB (Dexie.js) and background sync cues.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-slate-900">
-                Parent notifications without delay
-              </h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Teachers confirm and send pre-filled WhatsApp or SMS alerts to parents. No WhatsApp
-                Business API is required and SMS routes through the college’s DLT-approved gateway
-                with delivery tracking.
-              </p>
-            </div>
+          <div className="relative w-full max-w-xl">
+            <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-primary/20 blur-3xl" />
+            <img
+              src={heroImage}
+              alt="Faculty member tracking student attendance in OAM"
+              className="relative rounded-[2.75rem] border border-white/40 shadow-2xl shadow-primary/25"
+            />
           </div>
         </div>
       </section>
@@ -107,6 +116,13 @@ export const LandingPage = () => {
                 record delivery status.
               </li>
             </ol>
+          </div>
+          <div className="sm:col-span-2 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-200/60">
+            <img
+              src={principalImage}
+              alt="Principal reviewing attendance analytics"
+              className="w-full object-cover"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { formatDisplayDate } from '../lib/date'
+import facultyBackground from '../assets/faculty-attendance.png'
 
 interface AttendanceRecord {
   id: string
@@ -50,7 +51,14 @@ export const MyAttendancePage = () => {
   )
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8">
+    <div className="relative overflow-hidden">
+      <img
+        src={facultyBackground}
+        alt="Faculty attendance dashboard"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-slate-900/45" />
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-10 text-white">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-wide text-primary-dark">
           My Attendance
@@ -58,12 +66,12 @@ export const MyAttendancePage = () => {
         <h1 className="text-xl font-semibold text-slate-900">
           {user?.name ?? 'Faculty Member'}
         </h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-slate-100">
           Biometric punch records and manual confirmations. After scanning your fingerprint at the kiosk, confirm your check-in or check-out here.
         </p>
       </header>
 
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-white/20 bg-white/95 p-6 text-slate-900 shadow-xl shadow-primary/20">
         <h2 className="text-lg font-semibold text-slate-900">Today's Status</h2>
         <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
@@ -101,7 +109,7 @@ export const MyAttendancePage = () => {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-white/20 bg-white/95 p-6 text-slate-900 shadow-xl shadow-primary/20">
         <h2 className="text-lg font-semibold text-slate-900">Recent History</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -149,9 +157,10 @@ export const MyAttendancePage = () => {
         </div>
       </section>
 
-      <footer className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
+      <footer className="rounded-3xl border border-white/20 bg-slate-900/70 p-4 text-xs text-slate-100">
         Biometric timestamps are recorded at the kiosk. Manual confirmations here pair with those punches for audit and reporting.
       </footer>
+      </div>
     </div>
   )
 }

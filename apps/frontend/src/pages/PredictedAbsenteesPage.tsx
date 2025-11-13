@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { formatDisplayDate } from '../lib/date'
+import absenteesImage from '../assets/absentees-prediction.png'
 
 interface PredictedAbsentee {
   studentId: string
@@ -91,6 +92,13 @@ export const PredictedAbsenteesPage = () => {
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8">
+      <div className="relative overflow-hidden rounded-3xl border border-warning/20 bg-warning/5 shadow-lg shadow-warning/20">
+        <img
+          src={absenteesImage}
+          alt="Predicted absentees heatmap"
+          className="h-48 w-full object-cover sm:h-60"
+        />
+      </div>
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-wide text-primary-dark">
           Predictive Analytics
