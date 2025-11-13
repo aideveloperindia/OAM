@@ -8,12 +8,12 @@ import { registerSW } from 'virtual:pwa-register'
 registerSW({
   immediate: true,
   onNeedRefresh() {
-    if (confirm('A new version of CollegeAttend is available. Reload now?')) {
+    if (confirm('A new version of OAM is available. Reload now?')) {
       window.location.reload()
     }
   },
   onOfflineReady() {
-    console.info('CollegeAttend is ready to work offline.')
+    console.info('OAM is ready to work offline.')
   }
 })
 

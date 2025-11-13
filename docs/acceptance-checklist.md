@@ -12,9 +12,11 @@
 - [ ] Docker Compose stack (`docker-compose up --build`) serves frontend on port 4173 and backend on port 4100.
 - [ ] GitHub Actions pipeline runs unit tests, Playwright e2e suite, and Docker builds.
 - [ ] Quotation PDFs (standard & advanced) generated in `/artifact` and print correctly.
-- [ ] Walkthrough video (`CollegeAttend_Staging_<date>.mp4`) accessible in `/artifact`.
+- [ ] Walkthrough video (`OAM_Staging_<date>.mp4`) accessible in `/artifact`.
 - [ ] ML pipeline artefacts (`artifact/ml`) generated via `python packages/ml/train.py`.
 - [ ] README includes staging instructions, credentials, and command cheatsheet.
+
+
 
 
 

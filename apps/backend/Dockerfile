@@ -27,8 +27,3 @@ COPY --from=builder /app/apps/backend/prisma ./apps/backend/prisma
 COPY --from=builder /app/docs ./docs
 EXPOSE 4000
 CMD ["node", "apps/backend/dist/server.js"]
-
-
-
-
-

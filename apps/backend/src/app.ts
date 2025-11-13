@@ -12,7 +12,7 @@ const app = express()
 app.use(helmet())
 app.use(
   cors({
-    origin: env.NODE_ENV === 'production' ? [/collegeattend/i] : true,
+    origin: env.NODE_ENV === 'production' ? [/oam/i] : true,
     credentials: true
   })
 )

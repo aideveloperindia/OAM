@@ -44,7 +44,7 @@ export const LoginPage = () => {
     <div className="mx-auto flex w-full max-w-md flex-col gap-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
       <header className="space-y-1 text-center">
         <h1 className="text-xl font-semibold text-slate-900">
-          Sign in to CollegeAttend
+          Sign in to OAM
         </h1>
         <p className="text-sm text-slate-500">
           Access the SCIT attendance environment with your campus email. No

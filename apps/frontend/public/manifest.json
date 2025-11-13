@@ -1,6 +1,6 @@
 {
-  "name": "CollegeAttend",
-  "short_name": "CollegeAttend",
+  "name": "OAM",
+  "short_name": "OAM",
   "description": "Production-ready attendance PWA for SCIT with offline-first capture, college-controlled WhatsApp outreach, and optional twin-campus support.",
   "start_url": "/",
   "display": "standalone",

@@ -21,5 +21,3 @@ start "" http://localhost:5173
 echo All set!
 
 endlocal
-
-

@@ -35,7 +35,7 @@ See `packages/ml/train.py` for the reference implementation and feature generati
 ### Deployment workflow
 
 1. Nightly GitHub Actions job runs `python packages/ml/train.py` against the latest warehouse snapshot.
-2. Model artefacts versioned in object storage (`collegeattend-ml-artifacts/{date}/`).
+2. Model artefacts versioned in object storage (`oam-ml-artifacts/{date}/`).
 3. Backend exposes `/api/v1/insights/risk` (future work) to serve predictions aggregated by session.
 4. Frontend `FacultyAttendancePage` surfaces the `riskLevel` hints for same-day classes and allows proactive WhatsApp alerts.
 
@@ -44,6 +44,8 @@ See `packages/ml/train.py` for the reference implementation and feature generati
 - Metrics pushed to Prometheus using `metrics.json` (AUC) for drift alerts.
 - Optional Grafana dashboard displays risk-distribution across tenants and subjects.
 - Retraining cadence configurable per tenant (default: weekly; falls back to monthly if volume is limited).
+
+
 
 
 

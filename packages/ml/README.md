@@ -1,4 +1,4 @@
-# CollegeAttend ML Pipeline
+# OAM ML Pipeline
 
 This micro-package contains a reproducible LightGBM training script for the Attendance Prediction add-on described in the advanced quotation.
 
@@ -29,6 +29,8 @@ Outputs land in ``artifact/ml`` at the repository root:
 - ``feature_importance.json`` – gain-based feature importances
 
 These artefacts are consumed by the deployment workflow described in ``docs/ml-pipeline.md``.
+
+
 
 
 

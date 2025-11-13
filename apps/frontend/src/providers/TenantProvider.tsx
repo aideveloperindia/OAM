@@ -3,7 +3,7 @@ import { TENANTS } from '../data/tenants'
 import { db } from '../data/db'
 import type { TenantConfig, TenantKey } from '../data/tenants'
 
-const STORAGE_KEY = 'collegeattend::tenant'
+const STORAGE_KEY = 'oam::tenant'
 const DEFAULT_TENANT: TenantKey = 'scit'
 
 interface TenantContextValue {

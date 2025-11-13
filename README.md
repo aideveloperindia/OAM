@@ -1,6 +1,6 @@
-# CollegeAttend – Production Attendance PWA
+# OAM – Production Attendance PWA
 
-CollegeAttend delivers a mobile-first, offline-capable attendance workflow for SCEE and SCIT. The mono-repo contains:
+OAM delivers a mobile-first, offline-capable attendance workflow for SCEE and SCIT. The mono-repo contains:
 
 - `apps/frontend` – React + TypeScript + Vite PWA with Dexie offline queueing, React Query sync, and WhatsApp notification tooling.
 - `apps/backend` – Express + Prisma + PostgreSQL API with JWT auth, RBAC, and attendance reporting.
@@ -31,12 +31,12 @@ Additional commands:
 
 | Role      | Campus | Email                               | Password             |
 |-----------|--------|-------------------------------------|----------------------|
-| Admin     | SCEE   | `admin.scee@collegeattend.in`       | `CollegeAttend@123`  |
-| Admin     | SCIT   | `admin.scit@collegeattend.in`       | `CollegeAttend@123`  |
-| Faculty   | SCEE   | `saiteja@scee.edu.in`               | `CollegeAttend@123`  |
-| Faculty   | SCIT   | `anusha.priya@scit.edu.in`          | `CollegeAttend@123`  |
-| Student   | SCEE   | `scee2101@scee.edu.in`              | `CollegeAttend@123`  |
-| Student   | SCIT   | `scit2201@scit.edu.in`              | `CollegeAttend@123`  |
+| Admin     | SCEE   | `admin.scee@oam.in`                 | `OAM@123`            |
+| Admin     | SCIT   | `admin.scit@oam.in`                 | `OAM@123`            |
+| Faculty   | SCEE   | `saiteja@scee.edu.in`               | `OAM@123`            |
+| Faculty   | SCIT   | `anusha.priya@scit.edu.in`          | `OAM@123`            |
+| Student   | SCEE   | `scee2101@scee.edu.in`              | `OAM@123`            |
+| Student   | SCIT   | `scit2201@scit.edu.in`              | `OAM@123`            |
 
 Tenants: `scee`, `scit`. The frontend tenant selector persists between sessions and scopes Dexie stores.
 
@@ -65,7 +65,7 @@ For live demos, run Docker Compose, then expose `4173` through a tunnel (e.g. `n
 ## Artefacts & documentation
 
 - `artifact/Quotation_Standard.pdf` & `artifact/Quotation_Advanced.pdf` – generated via `yarn workspace artifacts generate:quotes`.
-- `artifact/CollegeAttend_Staging_<date>.mp4` – silent walkthrough video produced by `yarn workspace artifacts generate:walkthrough` (requires `pip install -r packages/artifacts/requirements.txt`).
+- `artifact/OAM_Staging_<date>.mp4` – silent walkthrough video produced by `yarn workspace artifacts generate:walkthrough` (requires `pip install -r packages/artifacts/requirements.txt`).
 - `artifact/ml/` – LightGBM model + metrics via `python packages/ml/train.py` (after installing `packages/ml/requirements.txt`).
 - `docs/openapi.yaml` – OpenAPI 3.1 spec (also served at `/api/v1/openapi.json`).
 - `docs/ml-pipeline.md` – deployment notes for the prediction module.

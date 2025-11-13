@@ -4,6 +4,6 @@ process.env.REFRESH_TOKEN_SECRET =
 process.env.TOKEN_EXPIRY_SECONDS = process.env.TOKEN_EXPIRY_SECONDS ?? '900'
 process.env.REFRESH_TOKEN_EXPIRY_SECONDS = process.env.REFRESH_TOKEN_EXPIRY_SECONDS ?? '604800'
 process.env.DATABASE_URL =
-  process.env.DATABASE_URL ?? 'postgresql://prisma:password@localhost:5432/collegeattend'
+  process.env.DATABASE_URL ?? 'postgresql://prisma:password@localhost:5432/oam'
 
 

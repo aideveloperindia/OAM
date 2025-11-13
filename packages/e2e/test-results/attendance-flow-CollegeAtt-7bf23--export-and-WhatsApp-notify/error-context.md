@@ -5,7 +5,7 @@
   - banner [ref=e4]:
     - generic [ref=e5]:
       - generic [ref=e6]:
-        - paragraph [ref=e7]: CollegeAttend
+        - paragraph [ref=e7]: OAM
         - paragraph [ref=e8]: Reliable attendance workflows for SCEE
       - generic [ref=e9]:
         - generic [ref=e10]:

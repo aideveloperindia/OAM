@@ -120,7 +120,7 @@ export const AdminReportsPage = () => {
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = `collegeattend_reports_${filters.from}_${filters.to}.csv`
+      link.download = `oam_reports_${filters.from}_${filters.to}.csv`
       link.click()
       URL.revokeObjectURL(url)
     }

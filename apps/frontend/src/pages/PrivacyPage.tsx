@@ -4,7 +4,7 @@ export const PrivacyPage = () => (
       <header className="space-y-2">
         <h1 className="text-2xl font-bold text-slate-900">Privacy & Consent</h1>
         <p>
-          CollegeAttend operates under a campus-controlled tenancy model. SCIT
+          OAM operates under a campus-controlled tenancy model. SCIT
           administrators govern data residency, access control, and export
           policies, with twin-campus support available on request. All data
           travels over HTTPS, encrypted at rest on the managed PostgreSQL

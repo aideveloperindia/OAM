@@ -169,7 +169,7 @@ export const useQueueSummary = (tenantId: TenantKey) => {
   }, [queue])
 }
 
-export const BACKGROUND_SYNC_TAG = 'collegeattend-attendance-sync'
+export const BACKGROUND_SYNC_TAG = 'oam-attendance-sync'
 
 interface BulkSyncResponseItem {
   localId: string

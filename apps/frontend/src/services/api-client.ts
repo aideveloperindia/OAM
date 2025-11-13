@@ -12,7 +12,7 @@ export const apiClient = axios.create({
 })
 
 apiClient.interceptors.request.use((config) => {
-  const stored = window.localStorage.getItem('collegeattend::auth')
+  const stored = window.localStorage.getItem('oam::auth')
   if (stored) {
     try {
       const parsed = JSON.parse(stored)

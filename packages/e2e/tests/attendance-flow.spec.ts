@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 const API_BASE = 'http://localhost:4000/api/v1'
 
-test.describe('CollegeAttend offline-first workflow', () => {
+test.describe('OAM offline-first workflow', () => {
   test.beforeEach(async ({ page }) => {
     await page.route(`${API_BASE}/auth/login`, async (route) => {
       await route.fulfill({
@@ -136,7 +136,7 @@ test.describe('CollegeAttend offline-first workflow', () => {
     await page.goto('/app/login')
     await page.evaluate(() => {
       return new Promise<void>((resolve, reject) => {
-        const request = indexedDB.open('CollegeAttendDB')
+        const request = indexedDB.open('OAMDB')
         request.onupgradeneeded = () => {
           const db = request.result
           if (!db.objectStoreNames.contains('queuedAttendance')) {

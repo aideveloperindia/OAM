@@ -2,7 +2,7 @@ import pino from 'pino'
 import { env } from './env'
 
 export const logger = pino({
-  name: 'collegeattend-backend',
+  name: 'oam-backend',
   level: env.NODE_ENV === 'production' ? 'info' : 'debug',
   transport:
     env.NODE_ENV === 'production'

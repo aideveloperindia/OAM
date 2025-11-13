@@ -15,7 +15,7 @@ interface RosterRow {
   batchCode?: string
 }
 
-const DEFAULT_PASSWORD = 'CollegeAttend@123'
+const DEFAULT_PASSWORD = 'OAM@123'
 
 const TENANTS = [
   {
@@ -132,7 +132,7 @@ const parseRosterCsv = (filePath: string): RosterRow[] => {
 }
 
 const seed = async () => {
-  logger.info('Starting CollegeAttend seed process')
+  logger.info('Starting OAM seed process')
   const passwordHash = await bcrypt.hash(DEFAULT_PASSWORD, 10)
 
   await prisma.attendanceAudit.deleteMany()
@@ -155,7 +155,7 @@ const seed = async () => {
     await prisma.user.create({
       data: {
         tenantId: tenant.id,
-        email: `admin.${tenant.id}@collegeattend.in`,
+        email: `admin.${tenant.id}@oam.in`,
         passwordHash,
         role: 'ADMIN',
         name: `${tenant.shortName} Administrator`,

@@ -18,12 +18,12 @@ interface BackgroundSyncEvent extends Event {
   waitUntil: (promise: Promise<unknown>) => void
 }
 
-const OFFLINE_CACHE = 'collegeattend-offline'
-const API_CACHE = 'collegeattend-api'
-const STATIC_CACHE = 'collegeattend-static'
-const IMAGE_CACHE = 'collegeattend-images'
+const OFFLINE_CACHE = 'oam-offline'
+const API_CACHE = 'oam-api'
+const STATIC_CACHE = 'oam-static'
+const IMAGE_CACHE = 'oam-images'
 const OFFLINE_FALLBACK_URL = '/offline.html'
-const BACKGROUND_SYNC_TAG = 'collegeattend-attendance-sync'
+const BACKGROUND_SYNC_TAG = 'oam-attendance-sync'
 
 self.skipWaiting()
 clientsClaim()

@@ -6,7 +6,7 @@ export const OfflineFallbackPage = () => {
           You are offline
         </h1>
         <p className="text-sm text-slate-600">
-          CollegeAttend continues to capture attendance and store records securely on
+          OAM continues to capture attendance and store records securely on
           this device. Reconnect to sync with campus systems and regenerate reports.
         </p>
         <p className="text-xs text-slate-500">

@@ -72,7 +72,7 @@ export const LandingPage = () => {
             <ul className="list-disc space-y-2 pl-5 text-sm text-slate-600">
               <li>Lecturer-specific logins secure access to their assigned timetable and rosters.</li>
               <li>
-                Set the guardian contact once per class; CollegeAttend reuses it for WhatsApp and SMS
+                Set the guardian contact once per class; OAM reuses it for WhatsApp and SMS
                 templates.
               </li>
               <li>

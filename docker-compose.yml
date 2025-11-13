@@ -3,11 +3,11 @@ version: '3.9'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: collegeattend-postgres
+    container_name: oam-postgres
     environment:
-      POSTGRES_USER: collegeattend
-      POSTGRES_PASSWORD: collegeattend
-      POSTGRES_DB: collegeattend
+      POSTGRES_USER: oam
+      POSTGRES_PASSWORD: oam
+      POSTGRES_DB: oam
     ports:
       - '5544:5432'
     volumes:
@@ -17,15 +17,15 @@ services:
     build:
       context: .
       dockerfile: apps/backend/Dockerfile
-    container_name: collegeattend-backend
+    container_name: oam-backend
     depends_on:
       - postgres
     environment:
       NODE_ENV: production
       PORT: 4000
-      DATABASE_URL: postgres://collegeattend:collegeattend@postgres:5432/collegeattend
-      JWT_SECRET: change-me-in-production-collegeattend
-      REFRESH_TOKEN_SECRET: change-me-refresh-secret-collegeattend
+      DATABASE_URL: postgres://oam:oam@postgres:5432/oam
+      JWT_SECRET: change-me-in-production-oam
+      REFRESH_TOKEN_SECRET: change-me-refresh-secret-oam
       TOKEN_EXPIRY_SECONDS: '900'
       REFRESH_TOKEN_EXPIRY_SECONDS: '604800'
     ports:
@@ -37,7 +37,7 @@ services:
       dockerfile: apps/frontend/Dockerfile
       args:
         VITE_API_URL: http://backend:4000/api/v1
-    container_name: collegeattend-frontend
+    container_name: oam-frontend
     depends_on:
       - backend
     ports:
@@ -45,6 +45,8 @@ services:
 
 volumes:
   postgres_data:
+
+
 
 
 

@@ -19,10 +19,10 @@ export const QuoteAdvancedPage = () => (
     timeline="Timeline: Additional 5–7 weeks (total 11–13 weeks)"
     monthlyHeading="Monthly infra & maintenance (max expected)"
     monthlyItems={[
-      'Managed hosting (CPU-based), storage & monitoring: ₹40,000/month',
-      'Maintenance & support (app + ML ops, up to 60 hours): ₹2,20,000/month',
-      'Model retraining & evaluation cadence (CPU optimised): ₹60,000/month',
-      'SMS gateway renewals & 35,000 message fallback credits: ₹22,000/month'
+      'Managed hosting & autoscale (API, workers, analytics): ₹52,000/month',
+      'ML retraining & inference compute allowance (GPU cluster): ₹95,000/month',
+      'Observability & incident tooling (logs, APM, alerting): ₹28,000/month',
+      'Messaging credits (35,000 SMS + WhatsApp templates): ₹26,000/month'
     ]}
   />
 )

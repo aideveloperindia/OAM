@@ -79,7 +79,7 @@ export const SyncMonitorPage = () => {
           Offline queue and sync activity
         </h1>
         <p className="text-sm text-slate-600">
-          Keep track of pending attendance submissions. CollegeAttend retries
+          Keep track of pending attendance submissions. OAM retries
           automatically when connectivity returns. Admins can trigger manual sync any
           time.
         </p>

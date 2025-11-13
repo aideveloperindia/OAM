@@ -21,7 +21,7 @@ export const HelpPage = () => (
           'Need to alert guardians? Tap Notify Parents to launch WhatsApp or SMS templates prepared for the marked students.'
         ]}
         tips={[
-          'Queued marks live in IndexedDB `CollegeAttendDB.queuedAttendance` until uploaded.',
+          'Queued marks live in IndexedDB `OAMDB.queuedAttendance` until uploaded.',
           'Open Sync Monitor anytime to confirm pending, failed, or completed uploads.',
           'High-risk chips appear beside students who recently missed two sessions in a row or crossed the 45% absence threshold.'
         ]}
@@ -31,7 +31,7 @@ export const HelpPage = () => (
         title="Sign in with your lecturer account"
         summary="Lecturers and admins use their campus email to sign in. Demo mode works without a password when the API is offline."
         steps={[
-          'Open https://collegeattend.local (or the hosted URL) on a mobile or desktop browser.',
+          'Open https://oam.local (or the hosted URL) on a mobile or desktop browser.',
           'Choose your campus in the selector (SCIT by default).',
           'Enter your campus email and press Sign In. If the backend is offline, a secure demo session is created so you can keep working.',
           'After the first login, install the app (Add to Home Screen) for one-touch access.'
@@ -51,7 +51,7 @@ export const HelpPage = () => (
           'If you will be offline for long periods, open the next day’s sessions in advance so they are cached too.'
         ]}
         tips={[
-          'Roster cache lives in the on-device IndexedDB database `CollegeAttendDB.rosterCache`.',
+          'Roster cache lives in the on-device IndexedDB database `OAMDB.rosterCache`.',
           'The cache auto-expires after the admin changes a roster; fresh data is fetched at the next login.'
         ]}
       />
@@ -99,7 +99,7 @@ export const HelpPage = () => (
           'Choose WhatsApp click-to-chat or Send SMS. WhatsApp opens the official college sender account; SMS queues through the DLT-registered gateway with delivery status shown in the upload queue.'
         ]}
         tips={[
-          'Recipient overrides persist per campus using `collegeattend::whatsapp-recipient::<tenant>` in local storage.',
+          'Recipient overrides persist per campus using `oam::whatsapp-recipient::<tenant>` in local storage.',
           'DLT template IDs and SMS sender codes are managed centrally; lecturers do not have to approve templates.',
           'Download the CSV for archival or escalation to the admin staff.'
         ]}

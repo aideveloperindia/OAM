@@ -17,7 +17,7 @@ export const PublicLayout = () => {
             />
             <div>
               <p className="text-sm font-semibold text-primary-dark uppercase tracking-wide">
-                CollegeAttend
+                OAM
               </p>
               <p className="text-xs text-slate-500">
                 Smart attendance for Sree Chaitanya Institute of Technological Sciences

@@ -7,7 +7,7 @@ import './config/prisma'
 const server = http.createServer(app)
 
 server.listen(env.PORT, () => {
-  logger.info(`CollegeAttend backend listening on port ${env.PORT}`)
+  logger.info(`OAM backend listening on port ${env.PORT}`)
 })
 
 const shutdown = (signal: string) => {

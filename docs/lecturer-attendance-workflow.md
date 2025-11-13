@@ -7,8 +7,8 @@
 - Tap **Save session**. When online, records post to the API immediately; when offline, they stay queued locally until sync.
 
 ## 2. Offline Behaviour
-- The PWA caches rosters in IndexedDB (`CollegeAttendDB.rosterCache`).
-- Unsynced marks are stored in `CollegeAttendDB.queuedAttendance`, including date, subject, and lecturer ID.
+- The PWA caches rosters in IndexedDB (`OAMDB.rosterCache`).
+- Unsynced marks are stored in `OAMDB.queuedAttendance`, including date, subject, and lecturer ID.
 - The Sync Monitor screen shows pending uploads. Once back online, the app syncs automatically or on demand via **Sync now**.
 
 ## 3. Device Flexibility

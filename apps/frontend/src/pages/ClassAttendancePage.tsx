@@ -35,7 +35,7 @@ export const ClassAttendancePage = () => {
     if (typeof window === 'undefined') return ''
     try {
       const stored = window.localStorage.getItem(
-        `collegeattend::whatsapp-recipient::${tenantId}`
+        `oam::whatsapp-recipient::${tenantId}`
       )
       return stored ?? ''
     } catch (error) {
@@ -48,7 +48,7 @@ export const ClassAttendancePage = () => {
     if (typeof window === 'undefined') return
     try {
       const stored = window.localStorage.getItem(
-        `collegeattend::whatsapp-recipient::${tenantId}`
+        `oam::whatsapp-recipient::${tenantId}`
       )
       setWhatsAppRecipient(stored ?? '')
     } catch (error) {
@@ -60,7 +60,7 @@ export const ClassAttendancePage = () => {
   useEffect(() => {
     try {
       window.localStorage.setItem(
-        `collegeattend::whatsapp-recipient::${tenantId}`,
+        `oam::whatsapp-recipient::${tenantId}`,
         whatsAppRecipient
       )
     } catch (error) {

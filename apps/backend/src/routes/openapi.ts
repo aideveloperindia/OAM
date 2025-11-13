@@ -25,7 +25,3 @@ openApiRouter.get('/openapi.json', (_req, res) => {
   res.status(200).json(openApiSpec)
 })
 
-
-
-
-

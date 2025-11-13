@@ -36,7 +36,7 @@ export const NotifyParentsModal = ({
   const handleShareAll = async () => {
     if (!('share' in navigator) || !notifications.length) return
     await navigator.share({
-      title: 'CollegeAttend Parent Notices',
+      title: 'OAM Parent Notices',
       text: notifications.map((note) => note.message).join('\n\n')
     })
   }
@@ -88,7 +88,7 @@ export const NotifyParentsModal = ({
                   Notify Parents (WhatsApp)
                 </Dialog.Title>
                 <p className="mt-1 text-xs text-slate-500">
-                  Teachers confirm sending. CollegeAttend never sends messages automatically. Use the
+                  Teachers confirm sending. OAM never sends messages automatically. Use the
                   official sender{' '}
                   <span className="font-semibold text-primary">{senderNumber}</span> in WhatsApp.{' '}
                   {recipientOverride?.trim()
@@ -170,7 +170,7 @@ export const NotifyParentsModal = ({
                     {csvHref ? (
                       <a
                         href={csvHref}
-                        download="collegeattend_whatsapp_messages.csv"
+                        download="oam_whatsapp_messages.csv"
                         className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                       >
                         Download CSV

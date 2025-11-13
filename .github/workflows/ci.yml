@@ -14,13 +14,13 @@ jobs:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_USER: collegeattend
-          POSTGRES_PASSWORD: collegeattend
-          POSTGRES_DB: collegeattend
+          POSTGRES_USER: oam
+          POSTGRES_PASSWORD: oam
+          POSTGRES_DB: oam
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U collegeattend"
+          --health-cmd "pg_isready -U oam"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -42,7 +42,7 @@ jobs:
 
       - name: Run backend unit tests
         env:
-          DATABASE_URL: postgres://collegeattend:collegeattend@localhost:5432/collegeattend
+          DATABASE_URL: postgres://oam:oam@localhost:5432/oam
           JWT_SECRET: test-jwt-secret-please-change
           REFRESH_TOKEN_SECRET: test-refresh-secret-please-change
         run: yarn workspace backend test
@@ -55,7 +55,7 @@ jobs:
 
       - name: Build backend
         env:
-          DATABASE_URL: postgres://collegeattend:collegeattend@localhost:5432/collegeattend
+          DATABASE_URL: postgres://oam:oam@localhost:5432/oam
           JWT_SECRET: test-jwt-secret-please-change
           REFRESH_TOKEN_SECRET: test-refresh-secret-please-change
         run: yarn workspace backend build
@@ -79,8 +79,3 @@ jobs:
 
       - name: Docker compose build
         run: docker compose build
-
-
-
-
-

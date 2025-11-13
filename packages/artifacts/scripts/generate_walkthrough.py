@@ -17,11 +17,11 @@ ARTIFACT_DIR = ROOT_DIR / 'artifact'
 ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
 TIMESTAMP = datetime.now().strftime('%Y-%m-%d')
-OUTPUT_PATH = ARTIFACT_DIR / f'CollegeAttend_Staging_{TIMESTAMP}.mp4'
+OUTPUT_PATH = ARTIFACT_DIR / f'OAM_Staging_{TIMESTAMP}.mp4'
 
 SLIDES = [
     {
-        'title': 'CollegeAttend Staging Walkthrough',
+        'title': 'OAM Staging Walkthrough',
         'bullets': [
             'Production-ready attendance PWA for SCEE & SCIT.',
             'Mobile-first flows, offline capture, WhatsApp notifications.',
@@ -109,7 +109,7 @@ def render_slide_frame(title: str, bullets: list[str]) -> np.ndarray:
             )
         y += line_spacing * max(1, len(wrapped_lines)) + 10
 
-    footer = f'Generated {TIMESTAMP} · CollegeAttend staging bundle · Silent narration'
+    footer = f'Generated {TIMESTAMP} · OAM staging bundle · Silent narration'
     cv2.putText(
         frame,
         footer,

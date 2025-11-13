@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { apiClient } from '../services/api-client'
 
-const AUTH_STORAGE_KEY = 'collegeattend::auth'
+const AUTH_STORAGE_KEY = 'oam::auth'
 
 export type UserRole = 'faculty' | 'student' | 'admin'
 

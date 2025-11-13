@@ -52,14 +52,14 @@ export interface SyncEvent {
   failed?: number
 }
 
-class CollegeAttendDB extends Dexie {
+class OAMDB extends Dexie {
   queuedAttendance!: Table<QueuedAttendance, string>
   rosterCache!: Table<RosterCache, string>
   tenantSettings!: Table<TenantSetting, TenantKey>
   syncEvents!: Table<SyncEvent, number>
 
   constructor() {
-    super('CollegeAttendDB')
+    super('OAMDB')
     this.version(1).stores({
       queuedAttendance: '&localId, tenantId, syncStatus, capturedAt',
       rosterCache: '&id, tenantId, subjectId, batchId',
@@ -69,5 +69,5 @@ class CollegeAttendDB extends Dexie {
   }
 }
 
-export const db = new CollegeAttendDB()
+export const db = new OAMDB()
 

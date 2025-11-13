@@ -3,10 +3,7 @@ const COMBINED_LOGO = '/assets/college-logo.png'
 
 export const GlobalFooter = () => {
   return (
-    <footer
-      id="collegeattend-footer"
-      className="border-t border-slate-200 bg-white"
-    >
+    <footer id="oam-footer" className="border-t border-slate-200 bg-white">
       <div className="mx-auto flex w-full flex-col gap-4 px-4 py-4 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-8">
         <div className="flex items-center gap-3">
           <img
