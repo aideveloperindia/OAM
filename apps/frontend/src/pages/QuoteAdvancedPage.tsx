@@ -1,12 +1,12 @@
 import { PrintableQuoteLayout } from './QuoteStandardPage'
 
 const inclusions = [
-  'Everything in Standard (4,000-student deployment, SMS onboarding, backups).',
-  'Next-day absentee prediction module with explainable alerts inside Faculty Attendance.',
-  'Intervention planner for lecturers/HODs with high-risk student summaries.',
-  'WhatsApp + SMS bulk notify flows auto-filled from predictions (lecturer confirms send).',
-  'Retraining pipeline, monitoring dashboards, and ML documentation.',
-  'Data requirement: Minimum 3 months attendance data (6–12 months recommended).'
+  'Everything in Standard: offline-first attendance capture, notifications, admin dashboards, and managed backups.',
+  'Predictive absentee analytics dashboard with explainable risk scores and per-class intervention planner.',
+  'High-risk cohort alerts for lecturers/HODs with automated escalation notes and email summaries.',
+  'Bulk WhatsApp & SMS flows auto-filled from predictions (lecturer approves before sending).',
+  'Retraining pipeline for absentee models, scheduling, and monitoring dashboards with weekly KPI emails.',
+  'Enhanced audit trail, analytics exports, and year-on-year attendance comparison reports.'
 ]
 
 const pricingOptions = [

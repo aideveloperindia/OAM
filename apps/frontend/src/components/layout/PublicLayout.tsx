@@ -7,19 +7,21 @@ export const PublicLayout = () => {
     <div className="flex min-h-screen flex-col bg-background text-slate-900">
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-4">
             <img
               src="/assets/oam-official-logo.png"
-              alt="Sree Chaitanya Group attendance platform logo"
+              alt="Sree Chaitanya Group crest"
               className="h-12 w-12 rounded"
             />
-            <div>
-              <p className="text-sm font-semibold text-primary-dark uppercase tracking-wide">
-                Sree Chaitanya Group
-              </p>
-              <p className="text-xs text-slate-500">
-                Smart attendance for SCIT & SCEE faculty workflows
-              </p>
+            <div className="flex flex-col">
+              <img
+                src="/assets/oam-wordmark.png"
+                alt="Online Attendance Management wordmark"
+                className="h-6 object-contain"
+              />
+              <span className="text-xs font-medium uppercase tracking-wide text-primary-dark">
+                Online Attendance Management
+              </span>
             </div>
           </Link>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">

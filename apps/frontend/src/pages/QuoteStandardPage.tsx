@@ -1,10 +1,11 @@
 const inclusions = [
-  'Multi-tenant PWA sized for 4,000 students (SCIT + SCEE) with offline-first faculty workflows.',
-  'Faculty attendance UI with Dexie queue, background sync checks, and quick absentee toggles.',
-  'Next-day absentee prediction chips inside Faculty Attendance for at-risk students.',
-  'Parent communication templates via WhatsApp click-to-chat and SMS (DLT onboarding + 25,000 credits included).',
-  'Managed PostgreSQL with automated nightly backups, 30-day recovery, and quarterly restore drills.',
-  'Audit logs, RBAC, infrastructure-as-code deployment, documentation, and onsite onboarding.'
+  'Offline-first faculty attendance capture with Dexie queue, background sync, and class-by-class roster management.',
+  'Manual and bulk absentee notifications via WhatsApp click-to-chat and SMS (DLT onboarding + 25,000 credits included).',
+  'Role-based access control for faculty, HOD, and admin dashboards with secure login and token refresh.',
+  'Offline queue management screens, sync monitor, and admin reports for attendance exports (CSV/PDF).',
+  'Device-agnostic PWA with install prompts, background sync registration, and cache-first service worker.',
+  'Managed database (MongoDB Atlas M10) with automated backups, 30-day recovery, and quarterly restore drills.',
+  'Infrastructure-as-code setup, staging environment, documentation, and onsite onboarding workshops.'
 ]
 
 const pricingOptions = [
