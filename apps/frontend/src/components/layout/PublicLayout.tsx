@@ -11,13 +11,13 @@ export const PublicLayout = () => {
             <img
               src="/assets/oam-official-logo.png"
               alt="Sree Chaitanya Group crest"
-              className="h-12 w-12 rounded"
+              className="h-14 w-14 rounded-2xl shadow-sm"
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <img
                 src="/assets/oam-wordmark.png"
                 alt="Online Attendance Management wordmark"
-                className="h-6 object-contain"
+                className="h-7 object-contain"
               />
               <span className="text-xs font-medium uppercase tracking-wide text-primary-dark">
                 Online Attendance Management
